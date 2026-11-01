@@ -15,9 +15,24 @@ class Node():
 
     def __init__(self, value, left=None, right=None):
         self.value = value
+        if left is not None:
+            assert isinstance(left, Node)
         self.left = left    # NOTE: left should always be a Node
+        if right is not None:
+            assert isinstance(right, Node)
         self.right = right  # NOTE: right should always be a Node
 
+    def __str__(self):
+        out = "("
+        out += str(self.value)
+        if self.left:
+            out += " "
+            out += str(self.left)
+        if self.right:
+            out += " "
+            out += str(self.right)
+        out += ")"
+        return out
 
 class BinaryTree():
     '''
