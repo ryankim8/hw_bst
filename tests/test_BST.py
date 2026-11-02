@@ -133,7 +133,7 @@ def test__BST___contains__2(xs):
     xs = list(set(xs))
     if len(xs)>0:
         while True:
-            x = random.uniform(min(xs)-1,max(xs)+1)
+            x = random.randint(min(xs)-1,max(xs)+1)
             if x not in xs:
                 break
     else:

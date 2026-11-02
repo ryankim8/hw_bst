@@ -34,6 +34,7 @@ class Node():
         out += ")"
         return out
 
+
 class BinaryTree():
     '''
     This class is relatively useless by itself,
