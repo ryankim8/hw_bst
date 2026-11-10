@@ -7,8 +7,8 @@ def test__BST_super():
     assert isinstance(x,BinaryTree)
 
 
-# the very first thing to do whenever creating a data structure 
-# is to write a function to check if the invariant holds 
+# the very first thing to do whenever creating a data structure
+# is to write a function to check if the invariant holds
 # (in this case the BST property)
 # and create test cases for whether that function works
 
@@ -96,7 +96,7 @@ def test__BST_insert(xs):
         bst.insert(x)
         assert x in bst.to_list('inorder')
         assert bst.is_bst_satisfied()
-    
+
 
 @given(xs=ints)
 def test__BST_insert_list(xs):
@@ -104,7 +104,7 @@ def test__BST_insert_list(xs):
     bst = BST()
     bst.insert_list(xs)
     assert bst.is_bst_satisfied()
-    
+
 
 @given(xs=ints)
 def test__BST___init__(xs):
@@ -131,15 +131,12 @@ def test__BST___contains__2(xs):
     Checks that if a value is NOT in the bst then __contains__ returns False
     '''
     xs = list(set(xs))
-    if len(xs)>0:
-        while True:
-            x = random.randint(min(xs)-1,max(xs)+1)
-            if x not in xs:
-                break
-    else:
-        x = 10
     bst = BST(xs)
-    assert x not in bst
+    if len(xs)>0:
+        for i in range(1000):
+            x = random.uniform(min(xs)-1,max(xs)+1)
+            if x not in xs:
+                assert x not in bst
 
 
 @given(xs=ints)
@@ -279,5 +276,64 @@ def test__BST_inorder_property(xs):
     xs2 = copy.copy(xs)
     random.shuffle(xs2)
     bst2 = BST(xs2)
-    
+
     assert bst1.to_list('inorder') == bst2.to_list('inorder')
+
+
+def test__BST_iterable_1():
+    '''
+    The BST should be iterable.
+    Iterating over the tree should give the results in sorted order.
+
+    HINT:
+    Currently, the BST class is not iterable because it does not define the __iter__ method.
+    Therefore, these tests all fail.
+    You must define an appropriate __iter__ method in order to make these tests pass.
+    I encourage you to think carefully about how you can reuse your previously implemented functions to implement the iterable interface.
+    '''
+    xs = [1, 2, 3, 4, 5]
+    bst = BST(xs)
+    _iter = iter(bst)
+    assert next(_iter) == 1
+    assert next(_iter) == 2
+    assert next(_iter) == 3
+    assert next(_iter) == 4
+    assert next(_iter) == 5
+    try:
+        next(_iter)
+    except StopIteration:
+        pass
+
+
+@given(xs=ints)
+def test__BST_iterable_2(xs):
+    xs = list(set(xs))
+
+    xs1 = copy.copy(xs)
+    random.shuffle(xs1)
+    bst1 = BST(xs1)
+
+    xs2 = copy.copy(xs)
+    random.shuffle(xs2)
+    bst2 = BST(xs2)
+
+    assert list(bst1) == list(bst2)
+
+
+@given(xs=ints)
+def test__BST_eq(xs):
+    '''
+    This test is essentially the same as the previous one,
+    but tests the == operator specifically.
+    '''
+    xs = list(set(xs))
+
+    xs1 = copy.copy(xs)
+    random.shuffle(xs1)
+    bst1 = BST(xs1)
+
+    xs2 = copy.copy(xs)
+    random.shuffle(xs2)
+    bst2 = BST(xs2)
+
+    assert bst1 == bst2
