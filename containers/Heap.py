@@ -65,6 +65,7 @@ class Heap(BinaryTree):
         '''
         return Heap._is_complete(node) and Heap._is_min_heap(node)
 
+    @staticmethod
     def _is_complete(node):
         if node is None:
             return True
@@ -81,6 +82,7 @@ class Heap(BinaryTree):
                 queue.append(node.right)
         return True
 
+    @staticmethod
     def _is_min_heap(node):
         if node is None:
             return True
