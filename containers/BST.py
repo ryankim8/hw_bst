@@ -1,5 +1,5 @@
 '''
-This file implements the Binary Search Tree data structure.
+git pull gitlab heap --no-rebaseThis file implements the Binary Search Tree data structure.
 The functions in this file are considerably harder than the functions in the BinaryTree file.
 '''
 

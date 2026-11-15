@@ -218,7 +218,6 @@ def test__AVLTree_insert(xs):
         assert avl.is_bst_satisfied()
         assert avl.is_avl_satisfied()
 
-
 @given(xs=ints)
 def test__AVLTree_insert_list(xs):
     xs = list(set(xs))
@@ -226,7 +225,6 @@ def test__AVLTree_insert_list(xs):
     avl.insert_list(xs)
     assert avl.is_bst_satisfied()
     assert avl.is_avl_satisfied()
-
 
 @given(xs=ints)
 def test__AVLTree___init__(xs):
